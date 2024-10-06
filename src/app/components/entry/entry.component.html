@@ -1,0 +1,7 @@
+
+<div *ngIf="pokemon">
+    <div>{{ pokemon.name }}</div>
+    <div>id: {{ pokemon.id }}</div>
+    <div style="display: inline;">{{ pokemon.types[0].type.name }}</div>
+    <div *ngIf="pokemon.types[1]" style="display: inline;">-{{ pokemon.types[1].type.name }}</div>
+</div>

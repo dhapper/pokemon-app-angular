@@ -1,30 +1,30 @@
-import { Component, inject, OnInit, Input } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { PokeAPIService } from '../../services/poke-api.service';
 import { Root } from '../../model/interface/pokemon-info';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
-
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-card',
+  selector: 'app-entry',
   standalone: true,
   imports: [
     CommonModule
   ],
-  templateUrl: './card.component.html',
-  styleUrl: './card.component.css'
+  templateUrl: './entry.component.html',
+  styleUrl: './entry.component.css'
 })
-export class CardComponent {
+export class EntryComponent {
 
-  @Input() nameOrId: string = '';
-  @Input() isButton: boolean = false;
-
+  nameOrId: string = '';
   pokemon: Root | null = null; 
   pokeAPIService = inject(PokeAPIService);
-  router = inject(Router);
+  route = inject(ActivatedRoute);
 
   ngOnInit(): void {
-      this.getPokemonData(this.nameOrId);
+      this.route.paramMap.subscribe(params => {
+      this.nameOrId = params.get('nameOrId') || 'monferno';  // Default to 'monferno' if not provided
+      this.getPokemonData(this.nameOrId);  // Fetch the Pokémon data based on the route parameter
+    });
   }
   
   getPokemonData(nameOrId: string): void {
@@ -36,11 +36,6 @@ export class CardComponent {
         console.error('Error fetching Pokémon data:', error); // Handle errors
       }
     );
-  }
-
-  onCardClick() {
-    //update @input variable for EntryComponent before loading
-    this.router.navigate(['/entry', this.pokemon?.name]);
   }
 
 }

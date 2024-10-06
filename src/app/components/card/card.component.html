@@ -1,13 +1,26 @@
-<div class="card" style="width:200px" *ngIf="pokemon">
-  <img 
-    class="card-img-top" 
-    [src]="pokemon.sprites.versions['generation-vi']['omegaruby-alphasapphire'].front_default" 
-    alt="{{ pokemon.name }} image">
-  <div class="card-body">
-    <h4 class="card-title">{{ pokemon.name }}</h4>
-    <p class="card-text" style="display: inline;">{{ pokemon.types[0].type.name }}</p>
-    <p class="card-text" *ngIf="pokemon.types[1]" style="display: inline;">-{{ pokemon.types[1].type.name }}</p>
-    <p class="card-text">Height: {{ pokemon.height }} decimetres</p>
-    <p class="card-text">Weight: {{ pokemon.weight }} hectograms</p>
-  </div>
+<div *ngIf="isButton; else normalCard">
+  <button class="card" style="width:180px; background-color: rgb(100, 100, 100); border: none;" *ngIf="pokemon" (click)="onCardClick()">
+    <img class="card-img-top" [src]="pokemon.sprites.versions['generation-vi']['omegaruby-alphasapphire'].front_default" alt="{{ pokemon.name }} image">
+    <div class="card-body">
+      <h4 class="card-title">{{ pokemon.name }}</h4>
+      <p class="card-text" style="display: inline;">{{ pokemon.types[0].type.name }}</p>
+      <p class="card-text" *ngIf="pokemon.types[1]" style="display: inline;">-{{ pokemon.types[1].type.name }}</p>
+      <p class="card-text">Height: {{ pokemon.height }} decimetres</p>
+      <p class="card-text">Weight: {{ pokemon.weight }} hectograms</p>
+    </div>
+  </button>
 </div>
+
+<ng-template #normalCard>
+  <div class="card" style="width:180px; background-color: rgb(100, 100, 100);" *ngIf="pokemon">
+    <img class="card-img-top" [src]="pokemon.sprites.versions['generation-vi']['omegaruby-alphasapphire'].front_default" alt="{{ pokemon.name }} image">
+    <div class="card-body">
+      <h4 class="card-title">{{ pokemon.name }}</h4>
+      <p class="card-text" style="display: inline;">{{ pokemon.types[0].type.name }}</p>
+      <p class="card-text" *ngIf="pokemon.types[1]" style="display: inline;">-{{ pokemon.types[1].type.name }}</p>
+      <p class="card-text">Height: {{ pokemon.height }} decimetres</p>
+      <p class="card-text">Weight: {{ pokemon.weight }} hectograms</p>
+    </div>
+  </div>
+</ng-template>
+

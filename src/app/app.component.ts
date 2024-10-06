@@ -3,6 +3,8 @@ import { RouterOutlet } from '@angular/router';
 import { CardComponent } from "./components/card/card.component";
 import { CommonModule } from '@angular/common';
 import { CardLayoutComponent } from "./components/card-layout/card-layout.component";
+import { PkmnGeneratorComponent } from "./components/pkmn-generator/pkmn-generator.component";
+import { NavbarComponent } from "./components/navbar/navbar.component";
 
 @Component({
   selector: 'app-root',
@@ -11,7 +13,9 @@ import { CardLayoutComponent } from "./components/card-layout/card-layout.compon
     RouterOutlet,
     CardComponent,
     CommonModule,
-    CardLayoutComponent
+    CardLayoutComponent,
+    PkmnGeneratorComponent,
+    NavbarComponent
 ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
@@ -20,10 +24,5 @@ import { CardLayoutComponent } from "./components/card-layout/card-layout.compon
 export class AppComponent {
   title = 'pokemon_app';
 
-  renderedIndex: number[] = [];
-
-  ngOnInit(): void {
-    this.renderedIndex = Array.from({ length: 151 }, (_, i) => i + 1); // Generates an array from 1 to 151
-  }
 
 }
