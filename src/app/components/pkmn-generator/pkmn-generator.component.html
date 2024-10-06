@@ -1,0 +1,7 @@
+<button type="button" class="btn btn-success" (click)="OnCatch()">Catch Pokémon</button>
+
+<div *ngIf="capturedIds.length > 0">
+  <div *ngFor="let id of capturedIds" style="display: inline-block; margin: 10px">
+    <app-card [nameOrId]="id.toString()"></app-card>
+  </div>
+</div>
