@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DexGenOneComponent } from './dex-gen-one.component';
+import { DexGenComponent } from './dex-gen.component';
 
-describe('DexGenOneComponent', () => {
-  let component: DexGenOneComponent;
-  let fixture: ComponentFixture<DexGenOneComponent>;
+describe('DexGenComponent', () => {
+  let component: DexGenComponent;
+  let fixture: ComponentFixture<DexGenComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DexGenOneComponent]
+      imports: [DexGenComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DexGenOneComponent);
+    fixture = TestBed.createComponent(DexGenComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

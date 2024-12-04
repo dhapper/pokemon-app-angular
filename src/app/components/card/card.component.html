@@ -1,26 +1,34 @@
-<div *ngIf="isButton; else normalCard">
-  <button class="card" style="width:180px; background-color: rgb(100, 100, 100); border: none;" *ngIf="pokemon" (click)="onCardClick()">
-    <img class="card-img-top" [src]="pokemon.sprites.versions['generation-vi']['omegaruby-alphasapphire'].front_default" alt="{{ pokemon.name }} image">
-    <div class="card-body">
-      <h4 class="card-title">{{ pokemon.name }}</h4>
-      <p class="card-text" style="display: inline;">{{ pokemon.types[0].type.name }}</p>
-      <p class="card-text" *ngIf="pokemon.types[1]" style="display: inline;">-{{ pokemon.types[1].type.name }}</p>
-      <p class="card-text">Height: {{ pokemon.height }} decimetres</p>
-      <p class="card-text">Weight: {{ pokemon.weight }} hectograms</p>
-    </div>
-  </button>
-</div>
+<button class="card" 
+        [ngStyle]="{
+          'background': 'linear-gradient(to bottom, ' + getTypeColour((pokemon.types[1] ? pokemon.types[1].type.name : 'no-type')) + ' 0%, ' + getTypeColour(pokemon.types[0].type.name) + ' 80%)', 
+          'border': '5px solid ' + getTypeColour(pokemon.types[0].type.name)}"
+        style="width:180px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;" 
+        *ngIf="pokemon" 
+        (click)="onCardClick()">
+  
+  <!-- Image Section -->
+  <img class="card-img-top" 
+       [src]="pokemon.sprites.versions['generation-vi']['omegaruby-alphasapphire'].front_default" 
+       alt="{{ pokemon.name }} image" 
+       style="margin-bottom: 10px; width: 100%;"> 
 
-<ng-template #normalCard>
-  <div class="card" style="width:180px; background-color: rgb(100, 100, 100);" *ngIf="pokemon">
-    <img class="card-img-top" [src]="pokemon.sprites.versions['generation-vi']['omegaruby-alphasapphire'].front_default" alt="{{ pokemon.name }} image">
-    <div class="card-body">
-      <h4 class="card-title">{{ pokemon.name }}</h4>
-      <p class="card-text" style="display: inline;">{{ pokemon.types[0].type.name }}</p>
-      <p class="card-text" *ngIf="pokemon.types[1]" style="display: inline;">-{{ pokemon.types[1].type.name }}</p>
-      <p class="card-text">Height: {{ pokemon.height }} decimetres</p>
-      <p class="card-text">Weight: {{ pokemon.weight }} hectograms</p>
+  <!-- Card Body Section -->
+  <div class="card-body" style="text-align: center;">
+    <h4 class="card-title" style="margin: 0; font-size: 18px;">
+      <!-- Pokémon Name with more prominent white text and black shadow -->
+      <span style="color: white; text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);">{{ pokemon.name }}</span>
+    </h4>
+    <div style="display: flex; justify-content: center; gap: 5px; margin-top: 5px;">
+      <p class="card-text" style="margin: 0; display: inline-block;">
+        <!-- Type 1 with more prominent white text and black shadow -->
+        <span style="color: white; text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);">{{ pokemon.types[0].type.name }}</span>
+      </p>
+      <p class="card-text" *ngIf="pokemon.types[1]" style="margin: 0; display: inline-block;">
+        <!-- Dash styled with white color and shadow -->
+        <span style="color: white; text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);"> - </span>
+        <!-- Type 2 with more prominent white text and black shadow -->
+        <span style="color: white; text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);">{{ pokemon.types[1].type.name }}</span>
+      </p>
     </div>
   </div>
-</ng-template>
-
+</button>

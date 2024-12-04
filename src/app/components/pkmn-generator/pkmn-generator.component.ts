@@ -1,23 +1,19 @@
 import { Component } from '@angular/core';
-import { CardComponent } from "../card/card.component";
 import { CommonModule } from '@angular/common';
-import { EntryComponent } from "../entry/entry.component";
+import { CaughtPokemon } from '../../model/interface/caught-pokemon';
+import { CardComponent } from "../card/card.component";
 
 @Component({
   selector: 'app-pkmn-generator',
   standalone: true,
-  imports: [
-    CardComponent,
-    CommonModule,
-    EntryComponent
-],
+  imports: [CommonModule, CardComponent],
   templateUrl: './pkmn-generator.component.html',
   styleUrls: ['./pkmn-generator.component.css']
 })
 export class PkmnGeneratorComponent {
-  capturedIds: number[] = []; // Array to store captured IDs
+  capturedIds: number[] = []; // Ensure this is declared
 
-  OnCatch() {
+  onCatch() {
     console.log("pressed");
     const newId = Math.floor(Math.random() * 151) + 1; // Generate a new random ID
     this.capturedIds.push(newId); // Add the new ID to the array

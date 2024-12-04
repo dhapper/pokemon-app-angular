@@ -1,7 +1,27 @@
-
-<div *ngIf="pokemon">
-    <div>{{ pokemon.name }}</div>
-    <div>id: {{ pokemon.id }}</div>
-    <div style="display: inline;">{{ pokemon.types[0].type.name }}</div>
-    <div *ngIf="pokemon.types[1]" style="display: inline;">-{{ pokemon.types[1].type.name }}</div>
-</div>
+<div *ngIf="pokemon" class="pokemon-entry" style="background-color: grey;">
+    <!-- Pokémon Name -->
+    <h2 class="pokemon-name">{{ pokemon.name }}</h2>
+  
+    <!-- Pokémon Normal and Shiny Sprites -->
+    <div class="pokemon-sprites">
+      <img [src]="pokemon.sprites.front_default" alt="{{ pokemon.name }} Normal Sprite" class="sprite">
+      <img [src]="pokemon.sprites.front_shiny" alt="{{ pokemon.name }} Shiny Sprite" class="sprite">
+    </div>
+  
+    <!-- Pokémon Type(s) -->
+    <div class="pokemon-types">
+      <span *ngFor="let type of pokemon.types; let i = index"
+            [ngStyle]="{'background-color': getTypeColor(type.type.name)}" class="pokemon-type">
+        {{ type.type.name }}
+      </span>
+    </div>
+  
+    <!-- Pokémon Stats as Horizontal Bar Graph -->
+    <div class="stats-container">
+      <div *ngFor="let stat of pokemon.stats" class="stat-item">
+        <div class="stat-label">{{ stat.stat.name }}: {{ stat.base_stat }}</div>
+        <div class="stat-bar" [ngStyle]="{ 'width': (stat.base_stat / 2) + '%' }"></div> <!-- 50% scale for stats -->
+      </div>
+    </div>
+  </div>
+  

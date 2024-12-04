@@ -1,5 +1,5 @@
-<div style="background-color: grey; display: flex; justify-content: center; flex-wrap: wrap;">
+<div style="background-color: rgb(30, 30, 30); display: flex; justify-content: center; flex-wrap: wrap;">
   <div *ngFor="let item of renderedIndex" style="display: inline-block; margin: 10px">
-    <app-card [nameOrId]="item.toString()" [isButton]="true"></app-card>
+    <app-card [nameOrId]="item.toString()"></app-card>
   </div>
 </div>
