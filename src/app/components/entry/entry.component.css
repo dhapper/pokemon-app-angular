@@ -1,0 +1,117 @@
+/* Main container for the Pokémon entry */
+.pokemon-entry {
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  max-width: 800px;
+  margin: 0 auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease-in-out;
+}
+
+/* Pokémon name styling */
+.pokemon-name {
+  text-align: center;
+  font-size: 2.5em;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Container for Pokémon sprites */
+.pokemon-sprites {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.sprite {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  border-radius: 10px;
+  transition: transform 0.2s;
+}
+
+.sprite:hover {
+  transform: scale(1.1);
+}
+
+/* Pokémon types display */
+.pokemon-types {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.pokemon-type {
+  display: inline-block;
+  padding: 5px 15px;
+  margin: 5px;
+  border-radius: 20px;
+  color: white;
+  font-weight: bold;
+  text-transform: capitalize;
+  transition: background-color 0.3s ease;
+}
+
+.pokemon-type:hover {
+  opacity: 0.8;
+}
+
+/* Stats container */
+.stats-container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Each stat item styling */
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Stat label styling */
+.stat-label {
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Stat bar styling */
+.stat-bar {
+  height: 20px;
+  background-color: #4caf50; /* Default color for stats */
+  border-radius: 5px;
+  border: 2px solid black; /* Added black border */
+  width: 0; /* Dynamically set width */
+  transition: width 0.5s ease-in-out;
+}
+
+/* Optional: Add specific colors for each stat type */
+.stat-bar.hp {
+  background-color: #f44336; /* Red for HP */
+}
+
+.stat-bar.attack {
+  background-color: #ff9800; /* Orange for Attack */
+}
+
+.stat-bar.defense {
+  background-color: #3f51b5; /* Blue for Defense */
+}
+
+.stat-bar.special-attack {
+  background-color: #9c27b0; /* Purple for Special Attack */
+}
+
+.stat-bar.special-defense {
+  background-color: #00bcd4; /* Cyan for Special Defense */
+}
+
+.stat-bar.speed {
+  background-color: #4caf50; /* Green for Speed */
+}
+
