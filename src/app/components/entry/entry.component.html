@@ -1,27 +1,36 @@
-<div *ngIf="pokemon" class="pokemon-entry" style="background-color: grey;">
-    <!-- Pokémon Name -->
-    <h2 class="pokemon-name">{{ pokemon.name }}</h2>
-  
-    <!-- Pokémon Normal and Shiny Sprites -->
-    <div class="pokemon-sprites">
-      <img [src]="pokemon.sprites.front_default" alt="{{ pokemon.name }} Normal Sprite" class="sprite">
-      <img [src]="pokemon.sprites.front_shiny" alt="{{ pokemon.name }} Shiny Sprite" class="sprite">
+<div *ngIf="pokemon" [style.background-color]="getTypeColor(pokemon.types[0].type.name || 'default')" style="width: 100%; height: 100vh; display: flex; justify-content: center; align-items: center;">
+  <div *ngIf="pokemon" class="pokemon-entry" style="background-color: grey; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); width: 80%; max-width: 900px;">
+    <!-- Pokémon Dex Number -->
+    <div class="pokemon-dex-number" style="text-align: right; font-size: 1.5em; font-weight: bold; color: white;">
+      #{{ pokemon.id }}
     </div>
-  
+    
+    <!-- Pokémon Name -->
+    <h2 class="pokemon-name" style="text-align: center; font-size: 2em; color: white; margin-bottom: 20px;">
+      {{ pokemon.name }}
+    </h2>
+
+    <!-- Pokémon Normal and Shiny Sprites -->
+    <div class="pokemon-sprites" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px;">
+      <img [src]="pokemon.sprites.front_default" alt="{{ pokemon.name }} Normal Sprite" class="sprite" style="width: 120px; height: auto; border: 2px solid white; border-radius: 10px;">
+      <img [src]="pokemon.sprites.front_shiny" alt="{{ pokemon.name }} Shiny Sprite" class="sprite" style="width: 120px; height: auto; border: 2px solid gold; border-radius: 10px;">
+    </div>
+
     <!-- Pokémon Type(s) -->
-    <div class="pokemon-types">
+    <div class="pokemon-types" style="text-align: center; margin-bottom: 20px;">
       <span *ngFor="let type of pokemon.types; let i = index"
-            [ngStyle]="{'background-color': getTypeColor(type.type.name)}" class="pokemon-type">
+            [ngStyle]="{'background-color': getTypeColor(type.type.name), 'color': 'white', 'padding': '5px 10px', 'border-radius': '5px', 'margin': '0 5px'}">
         {{ type.type.name }}
       </span>
     </div>
-  
+
     <!-- Pokémon Stats as Horizontal Bar Graph -->
-    <div class="stats-container">
-      <div *ngFor="let stat of pokemon.stats" class="stat-item">
-        <div class="stat-label">{{ stat.stat.name }}: {{ stat.base_stat }}</div>
-        <div class="stat-bar" [ngStyle]="{ 'width': (stat.base_stat / 2) + '%' }"></div> <!-- 50% scale for stats -->
+    <div class="stats-container" style="margin-top: 20px; background-color: #f4f4f4; padding: 10px; border-radius: 10px;">
+      <h3 style="text-align: center; margin-bottom: 10px; color: grey;">Stats</h3>
+      <div *ngFor="let stat of pokemon.stats" class="stat-item" style="margin-bottom: 10px;">
+        <div class="stat-label" style="font-weight: bold; color: grey; margin-bottom: 5px;">{{ stat.stat.name }}: {{ stat.base_stat }}</div>
+        <div class="stat-bar" style="height: 10px; border-radius: 5px; background-color: lightblue;" [ngStyle]="{ 'width': (stat.base_stat / 2) + '%' }"></div> <!-- 50% scale for stats -->
       </div>
     </div>
   </div>
-  
+</div>

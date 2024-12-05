@@ -6,6 +6,11 @@ import { ProfilePageComponent } from './components/profile-page/profile-page.com
 
 export const routes: Routes = [
     {
+        path: '',  // Default route
+        redirectTo: '/dex/1',  // Redirect to /dex/1
+        pathMatch: 'full'  // Ensures that the route is only activated if the path is exactly empty
+    },
+    {
         path: 'dex/:gen',  // Parameterized path for generation
         component: DexGenComponent
     },
